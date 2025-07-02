@@ -41,7 +41,7 @@ breast-cancer-cytology-classifier/
 1. **Clone the repo**
 
    ```bash
-   git clone https://github.com/yourusername/breast-cancer-cytology-classifier.git
+   git clone https://github.com/Ozai-03/breast-cancer-cytology-classifier.git
    cd breast-cancer-cytology-classifier
    ```
 
