@@ -111,7 +111,7 @@ print(report)
 
 - **Heatmap**: `results/heatmap.png`
 - **Pairplot**: `results/pairplot.png`
-- **Classification Report**: `results/classification_report.csv` (if generated)
+- **Classification Report**: `results/classification_report.csv` 
 - **Feature Importance**: `results/feature_importance.png`
 
 ---
@@ -119,12 +119,6 @@ print(report)
 ## 🤝 Contributing
 
 Contributions welcome! Please fork the repo and submit a pull request for enhancements, bug fixes, or additional features.
-
----
-
-## 📝 License
-
-This project is released under the MIT License. See [LICENSE](LICENSE) for details.
 
 ---
 
