@@ -43,7 +43,3 @@ print(X_train.shape, X_test.shape)
 - **Quick Start:** Run notebooks end-to-end without loading all 569 samples.
 - **Consistency:** Ensures everyone can reproduce examples using the same fixed subset.
 
----
-
-*Place this **`README.md`** in your **`data/`** folder to document its contents and usage.*
-
