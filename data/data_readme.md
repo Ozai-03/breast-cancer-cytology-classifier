@@ -29,12 +29,12 @@ Use the `split_data()` function to split features and target into training and t
 ```python
 from src.data_utils import split_data
 
-X_train, X_test, y_train, y_test = split_data(
+x_train, x_test, y_train, y_test = split_data(
     df,
     test_size=0.2,
     random_state=33
 )
-print(X_train.shape, X_test.shape)
+print(x_train.shape, x_test.shape)
 ```
 
 ## Why Include a Sample Subset?

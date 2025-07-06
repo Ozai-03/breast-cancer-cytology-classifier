@@ -1,4 +1,2 @@
-src/__pycache__/data_utils.cpython-312.pyc
-src/__pycache__/__init__.cpython-312.pyc
-src/__pycache__/modeling.cpython-312.pyc
-src/__pycache__/viz.cpython-312.pyc
+__pycache__
+/results/
