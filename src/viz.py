@@ -3,6 +3,7 @@ import seaborn as sns
 import pandas as pd
 import numpy as np
 import shap
+from numpy.random import default_rng
 
 
 def plot_pairplot(df: pd.DataFrame, features: list, hue: str = 'target') -> sns.PairGrid:
@@ -55,7 +56,8 @@ def plot_feature_importance(coef_series: pd.Series) -> plt.Figure:
     return fig
 
 def plot_shap_summary(shap_vals: np.ndarray,
-                      ts: pd.DataFrame
+                      ts: pd.DataFrame,
+                      random_state: int = 42
                       ) -> None:
     """
     Displays SHAP Summary
@@ -63,8 +65,10 @@ def plot_shap_summary(shap_vals: np.ndarray,
     Args:
         shap_vals: Array of SHAP values (n_samples, n_features)
         ts: Test Sample returned from shap_explainer()
+        random_state: seed
         
     Returns:
         None (renders plot)
     """
-    shap.summary_plot(shap_vals, ts)
+    rng = default_rng(random_state)
+    shap.summary_plot(shap_vals, ts, rng=rng)
