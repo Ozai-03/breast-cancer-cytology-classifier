@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='breast-cancer-cytology-classifier',
-    version='0.1.0',
+    version='0.1.1',
     description='Utilities for UCI Breast Cancer Wisconsin (Diagnostic) FNA cytology classification',
     packages_dir={'': 'src'},
     packages=['src'],
@@ -11,6 +11,7 @@ setup(
         'scikit-learn',
         'matplotlib',
         'seaborn',
+        'shap'
     ],
     author='Mathew Peguero',
     author_email='mnpeguerobusiness@gmail.com'
