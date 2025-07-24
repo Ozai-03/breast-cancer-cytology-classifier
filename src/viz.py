@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
+import numpy as np
+import shap
 
 
 def plot_pairplot(df: pd.DataFrame, features: list, hue: str = 'target') -> sns.PairGrid:
@@ -51,3 +53,18 @@ def plot_feature_importance(coef_series: pd.Series) -> plt.Figure:
     ax.set_ylabel('Feature')
     ax.set_title('Feature Importance')
     return fig
+
+def plot_shap_summary(shap_vals: np.ndarray,
+                      ts: pd.DataFrame
+                      ) -> None:
+    """
+    Displays SHAP Summary
+    
+    Args:
+        shap_vals: Array of SHAP values (n_samples, n_features)
+        ts: Test Sample returned from shap_explainer()
+        
+    Returns:
+        None (renders plot)
+    """
+    shap.summary_plot(shap_vals, ts)

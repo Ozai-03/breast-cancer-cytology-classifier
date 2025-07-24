@@ -1,4 +1,6 @@
 import pandas as pd
+import shap
+import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix, classification_report
 from typing import Any
@@ -83,3 +85,42 @@ def sort_coeffcients_abs(coefficients: pd.DataFrame) -> pd.Series:
     abs_df = coefficients.abs()
     sorted_df = abs_df.sort_values(by=0, axis=1, ascending=False)
     return sorted_df.iloc[0]
+
+def shap_explainer(model: LogisticRegression,
+                   x_train: pd.DataFrame,
+                   x_test: pd.DataFrame,
+                   bg_size: int = 1000,
+                   ts_size: int = 500,
+                   random_state: int = 42
+                   ) -> tuple:
+    """
+    Gets feature importance using mean absolute SHAP values.
+    
+    Args:
+        model: Trained model with predict method
+        x_train: Training features (DataFrame)
+        x_test: Test Features (DataFrame)
+        bg_size: Max number of test samples to explain
+        random_state: Seed for reproducibility
+
+    Returns:
+        DataFrame sorted by descending importance with columns ['feature, 'importance']
+        """
+    #subsample
+    bg = shap.sample(x_train, bg_size,random_state=random_state)
+    ts = shap.sample(x_test, ts_size,random_state=random_state)
+    
+    #compute SHAP values
+    explainer = shap.Explainer(model.predict,bg)
+    shap_vals = explainer(ts).values 
+
+    importances = np.mean(np.abs(shap_vals), axis=0)
+
+    #sort features by importance
+    sorted_indicies = np.argsort(importances)[::1]
+    feature_names = x_test.columns[sorted_indicies]
+    importance_values = importances[sorted_indicies]
+    importance_df = pd.DataFrame({'feature':feature_names, 'importance': importance_values})
+    return (importance_df, shap_vals, ts)
+
+
